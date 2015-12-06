@@ -5,7 +5,7 @@
 About | Description
 ------------ | -------------
 Stable tag | 0.9.0
-Tested on | WHMCS 5.3.x
+Tested on | WHMCS 6.1.x
 License | GPLv2 or later
 License URI | http://www.gnu.org/licenses/gpl-2.0.html
 
