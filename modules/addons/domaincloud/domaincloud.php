@@ -27,8 +27,8 @@
 
 date_default_timezone_set('Asia/Jakarta');
 require_once ROOTDIR . "/includes/registrarfunctions.php";
-require_once ROOTDIR . "includes/classes/WHMCS/DomainDocuments.php";
-require_once ROOTDIR . "includes/classes/WHMCS/AddonListTable.php";
+require_once ROOTDIR . "/includes/classes/WHMCS/DomainDocuments.php";
+require_once ROOTDIR . "/includes/classes/WHMCS/AddonListTable.php";
 require_once "functions.php";
 
 if (!defined("WHMCS"))
