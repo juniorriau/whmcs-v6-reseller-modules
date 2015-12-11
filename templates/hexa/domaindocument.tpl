@@ -1,4 +1,3 @@
-{ literal }
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#checkall0').click(function (event) {
@@ -6,7 +5,6 @@ $(document).ready(function(){
 	});
 });
 </script>
-{ /literal }
 
 <div class="row">
 	<div class="col-md-12">
@@ -25,7 +23,8 @@ $(document).ready(function(){
 							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 						</span>
 					</div>
-					<span class="help-block"><small>{ $domains|@count } Rekaman Ditemukan, Halaman 1 dari 1</small></span>
+					<span class="help-block"><small>{$domains|@count} Rekaman Ditemukan, Halaman 1 dari 1</small></span>
+					
 				</div>
 			</form>
 		</div>
@@ -46,85 +45,85 @@ $(document).ready(function(){
 					</tr>
 				</thead>
 				<tbody>
-					{ foreach name=outer item=data from=$domains }
+					{foreach name=outer from=$domains item=data}
 						<tr>
 							<td>
 								<input type="checkbox" name="domids[]" class="domids" value="2">
 							</td>
 							<td >
-								{ $data.domain }
+								{$data.domain}
 							</td>
 							<td style="text-align: center;">
-								{ if $data.id_doc_storage_name }
-									<a href="domaindocument.php?userid={ $data.userid }&amp;a=download_1&amp;domain={ $data.domain }" style="text-decoration: none;">
+								{if $data.id_doc_storage_name}
+									<a href="domaindocument.php?userid={$data.userid}&amp;a=download_1&amp;domain={$data.domain}" style="text-decoration: none;">
 										<span class="label suspended">Check <i class="fa fa-download"></i></span>
 									</a> &#124; 
-								{ /if }
-								<a href="domaindocument.php?userid={ $data.userid }&amp;a=upload_1&amp;domain={ $data.domain }" style="text-decoration: none;">
+								{/if}
+								<a href="domaindocument.php?userid={$data.userid}&amp;a=upload_1&amp;domain={$data.domain}" style="text-decoration: none;">
 									<span class="label refunded">Upload <i class="fa fa-upload"></i></span>
 								</a> 
 							</td>
 							<td style="text-align: center;">
-								{ if $data.le_doc_storage_name }
-									<a href="domaindocument.php?userid={ $data.userid }&amp;a=download_2&amp;domain={ $data.domain }" style="text-decoration: none;">
+								{if $data.le_doc_storage_name}
+									<a href="domaindocument.php?userid={$data.userid}&amp;a=download_2&amp;domain={$data.domain}" style="text-decoration: none;">
 										<span class="label suspended">Check <i class="fa fa-download"></i></span>
 									</a> &#124; 
-								{ /if }
-								<a href="domaindocument.php?userid={ $data.userid }&amp;a=upload_2&amp;domain={ $data.domain }" style="text-decoration: none;">
+								{/if}
+								<a href="domaindocument.php?userid={$data.userid}&amp;a=upload_2&amp;domain={$data.domain}" style="text-decoration: none;">
 									<span class="label refunded">Upload <i class="fa fa-upload"></i></span>
 								</a>
 							</td>
 							<td style="text-align: center;">
-								{ if $data.su_doc_storage_name }
-									<a href="domaindocument.php?userid={ $data.userid }&amp;a=download_3&amp;domain={ $data.domain }" style="text-decoration: none;">
+								{if $data.su_doc_storage_name}
+									<a href="domaindocument.php?userid={$data.userid}&amp;a=download_3&amp;domain={$data.domain}" style="text-decoration: none;">
 										<span class="label suspended">Check <i class="fa fa-download"></i></span>
 									</a> &#124; 
-								{ /if }
-								<a href="domaindocument.php?userid={ $data.userid }&amp;a=upload_3&amp;domain={ $data.domain }" style="text-decoration: none;">
+								{/if}
+								<a href="domaindocument.php?userid={$data.userid}&amp;a=upload_3&amp;domain={$data.domain}" style="text-decoration: none;">
 									<span class="label refunded">Upload <i class="fa fa-upload"></i></span>
 								</a>
 							</td>
 							<td style="text-align: center;">
-								{ $data.registrationdate }
+								{$data.registrationdate}
 							</td>
 							<td style="text-align: center;">
-								{ if $data.domain_status == "3" }
+								{if $data.domain_status == "3"}
 									<span class="label active">Approved</span>
-								{ elseif $data.domain_status == "2" }
+								{elseif $data.domain_status == "2"}
 									<span class="label pending">Review</span>
-								{ /if }
+								{/if}
 							</td>
 						</tr>
-					{ /foreach }
+					{/foreach}
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
 
-{ if (strpos($action, 'upload') !== false) }
+{if (strpos($action, 'upload') !== false)}
 <div class="row">
 	<div class="col-md-12">
 	    <div style="border: 1px solid #ccc; background-color: #f0f0f0; border-radius: 5px; padding-bottom: 15px; padding-left: 15px; padding-right: 15px;">
-	        <form method="POST" action="domaindocument.php?a={ $action }&amp;domain={ $domain }" enctype="multipart/form-data">
+	        <form method="POST" action="domaindocument.php?a={$action}&amp;domain={$domain}" enctype="multipart/form-data">
 	            <center>
 					<h3>Upload Dokumen</h3>
 	            </center>
-	            <b>Domain</b>: { $domain } <br />
+	            <b>Domain</b>: {$domain} <br />
 	            <b>Jenis Dokumen</b>:
 	            <select name="doc_type">
-	                { if $action == "upload_1" }
+	                {if $action == "upload_1"}
 	                    <option value="KTP">KTP</option>
 	                    <option value="SIM">SIM</option>
 	                    <option value="PASSPORT">PASSPORT</option>
-	                { elseif $action == "upload_2" }
+	                {elseif $action == "upload_2"}
 	                    <option value="NPWP">NPWP</option>
 	                    <option value="SIUP">SIUP</option>
 	                    <option value="BKPM">BKPM</option>
-	                { else }
+	                {else}
 	                    <option value="Surat Pernyataan">Surat Pernyataan</option>
 	                    <option value="Lainnya">Lainnya</option>
-	                { /if }
+	                {/if}
 	            </select><br />
 	            <b>Dokumen</b>:
 	            <input type="file" name="file" id="file" size="30"><br />
@@ -136,7 +135,7 @@ $(document).ready(function(){
 	    </div>
 	</div>
 </div>
-{ /if }
+{/if}
 <br />
 <div class="row">
 	<div class="col-md-12">
