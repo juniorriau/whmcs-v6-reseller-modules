@@ -120,7 +120,7 @@ function domaincloud_output($vars) {
 
     echo $aInt->beginAdminTabs(array($aInt->lang("global", "searchfilter"))); 
     echo "
-            <form action=\"addonmodules.php?module=domainku\" method=\"post\">
+            <form action=\"addonmodules.php?module=domaincloud\" method=\"post\">
                 <table class=\"form\" width=\"100%\" border=\"0\" cellspacing=\"2\" cellpadding=\"3\">
                     <tbody>
                         <tr>
