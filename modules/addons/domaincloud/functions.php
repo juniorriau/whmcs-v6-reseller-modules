@@ -85,7 +85,7 @@ class WHMCS_DomainCloudFunctions {
                                 <tr>
                                     <td colspan=\"2\">
                                         <input class=\"btn btn-success\" type=\"submit\" name=\"ul\" value=\"Upload\" onclick=\"check_file()\">
-                                        <a href=\"addonmodules.php?module=domainku\">
+                                        <a href=\"addonmodules.php?module=domaincloud\">
 			                                <input class=\"btn btn-default\" type=\"button\" name=\"cancel\" value=\"Cancel\">
 			                            </a>
                                     </td>
@@ -146,7 +146,7 @@ class WHMCS_DomainCloudFunctions {
                                 </tr>
                                 <tr>
                                     <td width=\"5%\"><b>Document</b>:</td>
-                                    <td>" . $doctype . " &rarr; <a href=\"addonmodules.php?module=domainku&amp;userid=". $userid ."&amp;a=dl&amp;domainid=" . $domainid . "&amp;doc_name=" . $document_name . "\">Download</a></td>
+                                    <td>" . $doctype . " &rarr; <a href=\"addonmodules.php?module=domaincloud&amp;userid=". $userid ."&amp;a=dl&amp;domainid=" . $domainid . "&amp;doc_name=" . $document_name . "\">Download</a></td>
                                 </tr>
                                 <tr>
                                     <td width=\"5%\"><b>Domain Status</b>:</td>
@@ -162,7 +162,7 @@ class WHMCS_DomainCloudFunctions {
                                         <input class=\"btn btn-success\" type=\"submit\" name=\"save_domain_status\" value=\"Update Status\">
                                     </td>
                                     <td>
-                                        <a href=\"addonmodules.php?module=domainku\">
+                                        <a href=\"addonmodules.php?module=domaincloud\">
                                             <input type=\"button\" value=\"Cancel\" />
                                         </a>
                                     </td>
