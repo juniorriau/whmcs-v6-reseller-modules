@@ -41,33 +41,75 @@ function domainku_AdminCustomButtonArray() {
 }
 
 function domainku_GetContactDetails($params) {
-	$values = _api_process($params, "GetContactDetails");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "GetContactDetails");
+		return $values;
+	} else {
+		$values['error'] = 'GetContactDetails/domain-info($domain): You are not authorized for this operation.';
+		return $values;
+	}
 }
 
 function domainku_SaveContactDetails($params) {
-	$values = _api_process($params, 'SaveContactDetails');
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, 'SaveContactDetails');
+		return $values;
+	} else {
+		$values['error'] = 'SaveContactDetails/domain-info($domain): You are not authorized for this operation.';
+		return $values;
+	}
 }
 
 function domainku_GetNameservers($params) {
-	$values = _api_process($params, "GetNameservers");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "GetNameservers");
+		return $values;
+	} else {
+		$values['error'] = "GetNameservers/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function domainku_SaveNameservers($params) {
-	$values = _api_process($params, "SaveNameservers");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "SaveNameservers");
+		return $values;
+	} else {
+		$values['error'] = "SaveNameservers/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function domainku_GetRegistrarLock($params) {
-	$values = _api_process($params, "GetRegistrarLock");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "GetRegistrarLock");
+		return $values;
+	} else {
+		$values['error'] = "GetRegistrarLock/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function domainku_SaveRegistrarLock($params) {
-	$values = _api_process($params, "SaveRegistrarLock");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "SaveRegistrarLock");
+		return $values;
+	} else {
+		$values['error'] = "SaveRegistrarLock/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function domainku_RegisterDomain($params) {
@@ -86,8 +128,15 @@ function domainku_RenewDomain($params) {
 }
 
 function domainku_GetEPPCode($params) {
-	$values = _api_process($params, "GetEPPCode");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "GetEPPCode");
+		return $values;
+	} else {
+		$values['error'] = "GetEPPCode/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function domainku_RegisterNameserver($params) {
@@ -123,6 +172,18 @@ function domainku_RequestDelete($params) {
 		$query = update_query( "tbldomains", array("status"=>"Cancelled"), array("id"=>$params['domainid']) );
 	}
 	return $values;
+}
+
+function verify_domain_owner($params) {
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$query = select_query( "tbldomains", "status", array("id"=>$params['domainid']));
+	$result = mysql_fetch_array($query);
+
+	if ($result['status'] == 'Active') {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function _api_process($params, $command) {
