@@ -140,18 +140,39 @@ function domainku_GetEPPCode($params) {
 }
 
 function domainku_RegisterNameserver($params) {
-	$values = _api_process($params, "RegisterNameserver");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "RegisterNameserver");
+		return $values;
+	} else {
+		$values['error'] = "RegisterNameserver/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function domainku_ModifyNameserver($params) {
-	$values = _api_process($params, "ModifyNameserver");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "ModifyNameserver");
+		return $values;
+	} else {
+		$values['error'] = "ModifyNameserver/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function domainku_DeleteNameserver($params) {
-	$values = _api_process($params, "DeleteNameserver");
-	return $values;
+	$domain = $params['sld'] . '.' . $params['tld'];
+	$is_authorized = verify_domain_owner($params);
+	if ($is_authorized) {
+		$values = _api_process($params, "DeleteNameserver");
+		return $values;
+	} else {
+		$values['error'] = "DeleteNameserver/domain-info($domain): You are not authorized for this operation.";
+		return $values;
+	}
 }
 
 function _domainku_message($code) {
