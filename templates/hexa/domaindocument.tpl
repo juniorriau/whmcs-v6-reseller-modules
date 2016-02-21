@@ -114,8 +114,6 @@ $(document).ready(function(){
 	            <select name="doc_type">
 	                {if $action == "upload_1"}
 	                    <option value="KTP">KTP</option>
-	                    <option value="SIM">SIM</option>
-	                    <option value="PASSPORT">PASSPORT</option>
 	                {elseif $action == "upload_2"}
 	                    <option value="NPWP">NPWP</option>
 	                    <option value="SIUP">SIUP</option>
