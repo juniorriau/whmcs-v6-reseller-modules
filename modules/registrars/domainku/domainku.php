@@ -282,7 +282,7 @@ function _api_process($params, $command) {
 	    "paymentmethod"		=> "banktransfer",
 	);
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $api_endpoint);
+	curl_setopt($ch, CURLOPT_URL, "https://mydomain.cloud.id/domainkuResellerAPI/api.php");
 	curl_setopt($ch, CURLOPT_TIMEOUT, 0);
 	curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
 	curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
